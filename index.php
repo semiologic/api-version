@@ -101,6 +101,7 @@ if ( !$to_check ) {
 		SELECT	package as slug, url, stable_version, stable_package, bleeding_version, bleeding_package
 		FROM	packages
 		WHERE	type = :type
+		AND 	active = 1
 		ORDER BY package
 		", array(
 			'type' => $type,
@@ -110,6 +111,7 @@ if ( !$to_check ) {
 		SELECT	package as slug, url, stable_version, stable_package, bleeding_version, bleeding_package
 		FROM	packages
 		WHERE	type = :type
+		AND 	active = 1
 		AND		package IN (" . ( implode(',', array_map(array('db', 'escape'), array_keys($to_check))) ) . ")
 		ORDER BY package
 		", array(
